@@ -1,64 +1,61 @@
-import { createBullet, Bullet } from "./Bullet";
-
-//我方飞机
-export interface Position {
-  x: number;
-  y: number;
-}
+import { Bullet } from "./Bullet";
 
 export interface Plane {
-  position: Position;
+  bullets: Bullet[];
+  x: number;
+  y: number;
   moveLeft: () => void;
   moveRight: () => void;
   moveDown: () => void;
   moveUp: () => void;
   attack: () => void;
   run: () => void;
-  bullets: Bullet[];
 }
 
-interface PlaneOptions {
-  position?: Position;
-  bullets?: Bullet[];
-  speed?: number;
+const defaultOptions = {
+  x: 150,
+  y: 300,
+  speed: 5,
+};
+
+export function setupPlane(
+  plane,
+  bullets: Bullet[] = [],
+  defaultOptions = {}
+): Plane {
+  // 默认的配置项
+  options(plane, defaultOptions);
+  plane.bullets = bullets;
+
+  initMove(plane);
+  initAttack(plane, bullets);
+  initRun(plane, bullets);
+
+  return plane;
 }
 
-export function createPlane({
-  position = {
-    x: 0,
-    y: 0,
-  },
-  speed = 1,
-  bullets = [],
-}: PlaneOptions): Plane {
-  // 移动相关
-  function moveLeft() {
-    position.x -= speed;
-  }
+function options(plane, options) {
+  Object.assign(plane, defaultOptions, options);
+}
 
-  function moveRight() {
-    position.x += speed;
-  }
-
-  function moveDown() {
-    position.y += speed;
-  }
-
-  function moveUp() {
-    position.y -= speed;
-  }
-
-
-  // 子弹相关
-  function attack() {
-    const bullet = createBullet({
-      position: { x: position.x + 20, y: position.y },
-      speed: 5
+function initRun(plane, bullets) {
+  plane.run = function () {
+    bullets.forEach((bullet) => {
+      bullet.move();
     });
+  };
+}
+
+function initAttack(plane, bullets) {
+  function attack() {
+    const bullet = new Bullet();
+    bullet.x = plane.x + 20;
+    bullet.y = plane.y;
+    bullet.speed = 5;
+    bullet.onDestroy(removeBullet);
 
     addBullet(bullet);
   }
-
 
   function addBullet(bullet) {
     bullets.push(bullet);
@@ -69,24 +66,31 @@ export function createPlane({
     bullets.splice(index, 1);
   }
 
-  function run() {
-    // 处理所有子弹的移动
-    bullets.forEach((bullet) => {
-      bullet.move();
-      if (bullet.position.y < 100) {
-        removeBullet(bullet);
-      }
-    });
+  plane.attack = attack;
+  plane.addBullet = addBullet;
+  plane.removeBullet = removeBullet;
+}
+
+function initMove(plane) {
+  // 移动相关
+  function moveLeft() {
+    plane.x -= plane.speed;
   }
 
-  return {
-    bullets,
-    position,
-    moveLeft,
-    moveRight,
-    moveDown,
-    moveUp,
-    attack,
-    run,
-  };
+  function moveRight() {
+    plane.x += plane.speed;
+  }
+
+  function moveDown() {
+    plane.y += plane.speed;
+  }
+
+  function moveUp() {
+    plane.y -= plane.speed;
+  }
+
+  plane.moveLeft = moveLeft;
+  plane.moveRight = moveRight;
+  plane.moveDown = moveDown;
+  plane.moveUp = moveUp;
 }

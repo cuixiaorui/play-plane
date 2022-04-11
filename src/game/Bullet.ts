@@ -1,20 +1,21 @@
-import { Position } from "./Plane";
-
 export class Bullet {
-  public position: Position;
-  private _speed: number = 5;
-  constructor(position: Position, speed?: number) {
-    this.position = position;
-    if (speed) {
-      this._speed = speed;
+  public speed: number = 5;
+  public x: number = 0;
+  public y: number = 0;
+  public width: number = 0;
+  public height: number = 0;
+  constructor() {}
+
+  public move() {
+    this.y -= this.speed;
+
+    if (this.y <= 0) {
+      this._destroyFn && this._destroyFn(this);
     }
   }
 
-  public move() {
-    this.position.y -= this._speed;
+  private _destroyFn;
+  onDestroy(destroyFn) {
+    this._destroyFn = destroyFn;
   }
-}
-
-export function createBullet({ position, speed = 1 }) {
-  return new Bullet(position, speed);
 }

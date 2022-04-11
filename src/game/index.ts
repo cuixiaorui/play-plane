@@ -2,12 +2,14 @@
 // 胶水层
 export * from "./Plane";
 export * from "./Bullet";
-import { createPlane, Plane } from "./Plane";
+import { Plane, setupPlane } from "./Plane";
 import { Application } from "pixi.js";
 import { Bullet } from "./Bullet";
-import { EnemyPlane ,initEnemyPlane} from "./EnemyPlane";
+import { EnemyPlane, initEnemyPlane, runEnemyPlane } from "./EnemyPlane";
+import { fighting } from "./fighting";
 
 export let game: Application;
+
 game = new Application({
   width: 500,
   height: 500,
@@ -25,20 +27,25 @@ interface initGameResult {
   enemyPlanes: EnemyPlane[];
 }
 
-export function initGame({ planeInfo, bullets, enemyPlanes }): initGameResult {
-  const plane = createPlane({
-    position: planeInfo.position,
-    speed: planeInfo.speed,
-    bullets,
-  });
+export function initGame({ plane, bullets, enemyPlanes }): initGameResult {
+  setupPlane(plane, bullets);
 
-  initEnemyPlane(enemyPlanes)
+  initEnemyPlane(enemyPlanes);
 
-  // 战斗逻辑
+  run(plane, enemyPlanes);
 
   return {
     plane,
     bullets,
     enemyPlanes,
   };
+}
+
+export function run(plane, enemyPlanes) {
+  // 战斗逻辑
+  game.ticker.add(() => {
+    plane.run();
+    runEnemyPlane(enemyPlanes);
+    fighting(plane, enemyPlanes);
+  });
 }

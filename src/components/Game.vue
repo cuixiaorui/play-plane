@@ -14,23 +14,16 @@
 <script setup lang="ts">
 import Plane from "./Plane.vue";
 import Bullet from "./Bullet.vue";
-import EnemyPlane from './EnemyPlane.vue'
+import EnemyPlane from "./EnemyPlane.vue";
 import { reactive } from "vue";
 import { initGame } from "../game";
 
-const planeInfo = {
-  position: reactive({
-    x: 150,
-    y: 300,
-  }),
-  speed: 5,
-};
-
-const { plane, bullets,enemyPlanes } = initGame({
-  planeInfo,
+const { plane, bullets, enemyPlanes } = initGame({
+  plane: reactive({}),
   bullets: reactive([]),
   enemyPlanes: reactive([]),
 });
+
 </script>
 
 <style scoped></style>
