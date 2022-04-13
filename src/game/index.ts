@@ -28,7 +28,17 @@ interface initGameResult {
   enemyPlanes: EnemyPlane[];
 }
 
-export function initGame({ plane, bullets, enemyPlanes }): initGameResult {
+type initGameOptions = {
+  plane: any;
+  bullets: Bullet[];
+  enemyPlanes: EnemyPlane[];
+};
+
+export function initGame({
+  plane,
+  bullets,
+  enemyPlanes,
+}: initGameOptions): initGameResult {
   setupPlane(plane, bullets);
 
   initEnemyPlane(enemyPlanes);
@@ -42,7 +52,7 @@ export function initGame({ plane, bullets, enemyPlanes }): initGameResult {
   };
 }
 
-export function run(plane, enemyPlanes) {
+export function run(plane: Plane, enemyPlanes: EnemyPlane[]) {
   // 战斗逻辑
   game.ticker.add(() => {
     plane.run();

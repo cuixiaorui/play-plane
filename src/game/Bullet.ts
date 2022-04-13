@@ -15,7 +15,7 @@ export class Bullet {
   }
 
   private _destroyFn;
-  onDestroy(destroyFn) {
+  onDestroy(destroyFn: (...args) => void) {
     this._destroyFn = destroyFn;
   }
 }

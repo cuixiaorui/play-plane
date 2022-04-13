@@ -1,6 +1,8 @@
+import { EnemyPlane } from "./EnemyPlane";
 import { hitTestObject } from "./hitTestObject";
+import { Plane } from "./Plane";
 
-export function fighting(plane, enemyPlanes) {
+export function fighting(plane: Plane, enemyPlanes: EnemyPlane[]) {
   plane.bullets.forEach((bullet, bulletIndex) => {
     enemyPlanes.forEach((enemy, enemyIndex) => {
       if (hitTestObject(bullet, enemy)) {

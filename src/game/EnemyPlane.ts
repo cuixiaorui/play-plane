@@ -21,13 +21,13 @@ export class EnemyPlane {
   }
 }
 
-export function initEnemyPlane(enemyPlanes) {
+export function initEnemyPlane(enemyPlanes: EnemyPlane[]) {
   const enemyPlane = new EnemyPlane();
 
   enemyPlanes.push(enemyPlane);
 }
 
-export function runEnemyPlane(enemyPlanes) {
+export function runEnemyPlane(enemyPlanes: EnemyPlane[]) {
   enemyPlanes.forEach((enemy) => {
     enemy.move();
   });

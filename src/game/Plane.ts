@@ -4,6 +4,7 @@ export interface Plane {
   bullets: Bullet[];
   x: number;
   y: number;
+  speed: number;
   moveLeft: () => void;
   moveRight: () => void;
   moveDown: () => void;
@@ -19,7 +20,7 @@ const defaultOptions = {
 };
 
 export function setupPlane(
-  plane,
+  plane: any,
   bullets: Bullet[] = [],
   defaultOptions = {}
 ): Plane {
@@ -34,11 +35,11 @@ export function setupPlane(
   return plane;
 }
 
-function options(plane, options) {
+function options(plane: Plane, options) {
   Object.assign(plane, defaultOptions, options);
 }
 
-function initRun(plane, bullets) {
+function initRun(plane: Plane, bullets: Bullet[]) {
   plane.run = function () {
     bullets.forEach((bullet) => {
       bullet.move();
@@ -71,7 +72,7 @@ function initAttack(plane, bullets) {
   plane.removeBullet = removeBullet;
 }
 
-function initMove(plane) {
+function initMove(plane: Plane) {
   // 移动相关
   function moveLeft() {
     plane.x -= plane.speed;
