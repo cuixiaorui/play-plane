@@ -2,6 +2,7 @@
 // 胶水层
 export * from "./Plane";
 export * from "./Bullet";
+export * from "./EnemyPlane";
 import { Plane, setupPlane } from "./Plane";
 import { Application } from "pixi.js";
 import { Bullet } from "./Bullet";

@@ -6,10 +6,15 @@
 
 <script lang="ts" setup>
 import PlaneImg from "../assets/plane.png";
-import { onMounted, defineProps } from "vue";
+import { onMounted, defineProps, PropType } from "vue";
+import { Plane } from "../game/Plane";
 
-// TODO 如何把 type 给传入过来
-const { plane } = defineProps(["plane"]);
+const { plane } = defineProps({
+  plane: {
+    type: Object as PropType<Plane>,
+    required: true,
+  },
+});
 
 function keydownHandler(e: KeyboardEvent) {
   switch (e.code) {

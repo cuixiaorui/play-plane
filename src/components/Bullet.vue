@@ -5,16 +5,21 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, PropType } from "vue";
 import bulletImg from "../assets/bullet.png";
+import { Bullet } from "../game";
 
-const { bullet } = defineProps(["bullet"]);
+const { bullet } = defineProps({
+  bullet: {
+    type: Object as PropType<Bullet>,
+    required: true,
+  },
+});
 
-
-// 需要动态的获取width 和 height
+// TODO 需要动态的获取width 和 height
+// 解决 ref 的问题
 bullet.width = 45;
 bullet.height = 75;
-
 </script>
 
 <style scoped>

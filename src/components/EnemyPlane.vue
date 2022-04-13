@@ -1,25 +1,23 @@
 <template>
   <Container :x="enemyPlane.x" :y="enemyPlane.y">
-    <Sprite :texture="EnemyPlaneImg" :ref="sprite"></Sprite>
+    <Sprite :texture="EnemyPlaneImg"></Sprite>
   </Container>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { PropType } from "vue";
 import EnemyPlaneImg from "../assets/enemyPlane.png";
+import { EnemyPlane } from "../game";
 
-const { enemyPlane } = defineProps(["enemyPlane"]);
+const { enemyPlane } = defineProps({
+  enemyPlane: {
+    type: Object as PropType<EnemyPlane>,
+    required: true,
+  },
+});
 
-
-// const sprite = ref(null);
-// onMounted(() => {
-
-//   console.log("-----------enemyPlane-------------");
-//   console.log(sprite);
-// });
-
-enemyPlane.width = 172
-enemyPlane.height = 115
+enemyPlane.width = 172;
+enemyPlane.height = 115;
 </script>
 
 <style scoped></style>
