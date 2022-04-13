@@ -1,5 +1,4 @@
 import { expect, describe, it } from "vitest";
-import { mockTicker } from "../tests/helpers";
 import { setupPlane } from "./Plane";
 
 describe("Self Plane", () => {
