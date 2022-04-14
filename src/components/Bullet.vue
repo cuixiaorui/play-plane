@@ -16,8 +16,6 @@ const { bullet } = defineProps({
   },
 });
 
-// TODO 需要动态的获取width 和 height
-// 解决 ref 的问题
 bullet.width = 45;
 bullet.height = 75;
 </script>
