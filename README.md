@@ -11,12 +11,11 @@
 
 ## 技术栈
 
+- typescript
 - vue3 setup
 - vitest
 - custom renderer
 - pixi.js
-- typescript
-
 
 ## 开始
 
