@@ -1,25 +1,30 @@
 ## play-plane
-探索前端UI层和业务逻辑层的分离架构
 
-采用打飞机游戏的原因是因为游戏逻辑相对复杂一点
+在 vue3 中采用 Functional Core, Imperative Shell 模式来实现的打飞机游戏
 
+用来探索 Vue3 中如何做到 UI 层和业务逻辑层分离架构的实现
 
-采用了 Functional Core, Imperative Shell 模式来实现
+其目的是为了测试重度前端项目
 
-## Tasking
-
-### 我方飞机
-- [ ] 可以移动
-- [ ] 可以发射炮弹
-- [ ] 当和敌军撞机后后爆炸
-
-### 敌方飞机
+![](https://images-1252602850.cos.ap-beijing.myqcloud.com/20220414150701.png)
 
 
-## 知识点
-- [ ] vue3 中 props 如何定义复杂类型
+## 技术栈
+
+- vue3 setup
+- vitest
+- custom renderer
+- pixi.js
+- typescript
 
 
+## 开始
+
+```
+pnpm i 
+
+pnpm dev
+```
 
 
 
