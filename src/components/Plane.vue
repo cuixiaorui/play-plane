@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import PlaneImg from "../assets/plane.png";
-import { onMounted, defineProps, PropType } from "vue";
+import { onMounted, PropType } from "vue";
 import { Plane } from "../game/Plane";
 
 const { plane } = defineProps({

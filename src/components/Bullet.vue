@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType } from "vue";
+import { PropType } from "vue";
 import bulletImg from "../assets/bullet.png";
 import { Bullet } from "../game";
 
