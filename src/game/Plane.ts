@@ -14,7 +14,7 @@ export interface Plane {
 }
 
 const defaultOptions = {
-  x: 150,
+  x: 50,
   y: 300,
   speed: 5,
 };

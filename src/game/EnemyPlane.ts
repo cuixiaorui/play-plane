@@ -21,13 +21,19 @@ export class EnemyPlane {
   }
 }
 
-export function initEnemyPlane(enemyPlanes: EnemyPlane[]) {
-  const enemyPlane = new EnemyPlane();
+export function initEnemyPlanes(enemyPlanes: EnemyPlane[]) {
+  // 一秒生成一个飞机
+  setInterval(() => {
+    const enemy = new EnemyPlane();
+    enemy.x = 0;
+    enemy.y = 0;
+    enemy.speed = 1;
 
-  enemyPlanes.push(enemyPlane);
+    enemyPlanes.push(enemy);
+  }, 2000);
 }
 
-export function runEnemyPlane(enemyPlanes: EnemyPlane[]) {
+export function runEnemyPlanes(enemyPlanes: EnemyPlane[]) {
   enemyPlanes.forEach((enemy) => {
     enemy.move();
   });

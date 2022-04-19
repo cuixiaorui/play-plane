@@ -6,7 +6,7 @@ export * from "./EnemyPlane";
 import { Plane, setupPlane } from "./Plane";
 import { Application } from "pixi.js";
 import { Bullet } from "./Bullet";
-import { EnemyPlane, initEnemyPlane, runEnemyPlane } from "./EnemyPlane";
+import { EnemyPlane, initEnemyPlanes, runEnemyPlanes } from "./EnemyPlane";
 import { fighting } from "./fighting";
 
 export let game: Application;
@@ -41,7 +41,7 @@ export function initGame({
 }: initGameOptions): initGameResult {
   setupPlane(plane, bullets);
 
-  initEnemyPlane(enemyPlanes);
+  initEnemyPlanes(enemyPlanes);
 
   run(plane, enemyPlanes);
 
@@ -56,7 +56,7 @@ export function run(plane: Plane, enemyPlanes: EnemyPlane[]) {
   // 战斗逻辑
   game.ticker.add(() => {
     plane.run();
-    runEnemyPlane(enemyPlanes);
+    runEnemyPlanes(enemyPlanes);
     fighting(plane, enemyPlanes);
   });
 }
